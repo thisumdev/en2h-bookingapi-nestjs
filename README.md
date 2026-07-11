@@ -1,98 +1,310 @@
-<p align="center">
-  <a href="http://nestjs.com/" target="blank"><img src="https://nestjs.com/img/logo-small.svg" width="120" alt="Nest Logo" /></a>
-</p>
+# EN2H Booking Platform API
 
-[circleci-image]: https://img.shields.io/circleci/build/github/nestjs/nest/master?token=abc123def456
-[circleci-url]: https://circleci.com/gh/nestjs/nest
+## Project Overview
 
-  <p align="center">A progressive <a href="http://nodejs.org" target="_blank">Node.js</a> framework for building efficient and scalable server-side applications.</p>
-    <p align="center">
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/v/@nestjs/core.svg" alt="NPM Version" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/l/@nestjs/core.svg" alt="Package License" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/dm/@nestjs/common.svg" alt="NPM Downloads" /></a>
-<a href="https://circleci.com/gh/nestjs/nest" target="_blank"><img src="https://img.shields.io/circleci/build/github/nestjs/nest/master" alt="CircleCI" /></a>
-<a href="https://discord.gg/G7Qnnhy" target="_blank"><img src="https://img.shields.io/badge/discord-online-brightgreen.svg" alt="Discord"/></a>
-<a href="https://opencollective.com/nest#backer" target="_blank"><img src="https://opencollective.com/nest/backers/badge.svg" alt="Backers on Open Collective" /></a>
-<a href="https://opencollective.com/nest#sponsor" target="_blank"><img src="https://opencollective.com/nest/sponsors/badge.svg" alt="Sponsors on Open Collective" /></a>
-  <a href="https://paypal.me/kamilmysliwiec" target="_blank"><img src="https://img.shields.io/badge/Donate-PayPal-ff3f59.svg" alt="Donate us"/></a>
-    <a href="https://opencollective.com/nest#sponsor"  target="_blank"><img src="https://img.shields.io/badge/Support%20us-Open%20Collective-41B883.svg" alt="Support us"></a>
-  <a href="https://twitter.com/nestframework" target="_blank"><img src="https://img.shields.io/twitter/follow/nestframework.svg?style=social&label=Follow" alt="Follow us on Twitter"></a>
-</p>
-  <!--[![Backers on Open Collective](https://opencollective.com/nest/backers/badge.svg)](https://opencollective.com/nest#backer)
-  [![Sponsors on Open Collective](https://opencollective.com/nest/sponsors/badge.svg)](https://opencollective.com/nest#sponsor)-->
+A REST API for managing services and customer bookings, developed for the EN2H Software Engineer Intern technical assessment.
 
-## Description
+Authenticated users can manage services and bookings. Customers can create bookings without authentication.
 
-[Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
+## Technology Stack
 
-## Project setup
+- NestJS
+- TypeScript
+- PostgreSQL
+- TypeORM
+- JWT Authentication
+- Swagger / OpenAPI
+- Docker and Docker Compose
+- Jest
+- npm
 
-```bash
-$ npm install
-```
+## Prerequisites
 
-## Compile and run the project
+Install the following:
+
+- Node.js
+- npm
+- Docker Desktop
+- Git
+
+## Installation Steps
+
+Clone the repository:
 
 ```bash
-# development
-$ npm run start
-
-# watch mode
-$ npm run start:dev
-
-# production mode
-$ npm run start:prod
+git clone <repository-url>
 ```
 
-## Run tests
+Move into the project folder:
 
 ```bash
-# unit tests
-$ npm run test
-
-# e2e tests
-$ npm run test:e2e
-
-# test coverage
-$ npm run test:cov
+cd en2h-bookingapi-nestjs
 ```
 
-## Deployment
-
-When you're ready to deploy your NestJS application to production, there are some key steps you can take to ensure it runs as efficiently as possible. Check out the [deployment documentation](https://docs.nestjs.com/deployment) for more information.
-
-If you are looking for a cloud-based platform to deploy your NestJS application, check out [Mau](https://mau.nestjs.com), our official platform for deploying NestJS applications on AWS. Mau makes deployment straightforward and fast, requiring just a few simple steps:
+Install dependencies:
 
 ```bash
-$ npm install -g @nestjs/mau
-$ mau deploy
+npm install
 ```
 
-With Mau, you can deploy your application in just a few clicks, allowing you to focus on building features rather than managing infrastructure.
+Create a local environment file.
 
-## Resources
+Windows Command Prompt:
 
-Check out a few resources that may come in handy when working with NestJS:
+```cmd
+copy .env.example .env
+```
 
-- Visit the [NestJS Documentation](https://docs.nestjs.com) to learn more about the framework.
-- For questions and support, please visit our [Discord channel](https://discord.gg/G7Qnnhy).
-- To dive deeper and get more hands-on experience, check out our official video [courses](https://courses.nestjs.com/).
-- Deploy your application to AWS with the help of [NestJS Mau](https://mau.nestjs.com) in just a few clicks.
-- Visualize your application graph and interact with the NestJS application in real-time using [NestJS Devtools](https://devtools.nestjs.com).
-- Need help with your project (part-time to full-time)? Check out our official [enterprise support](https://enterprise.nestjs.com).
-- To stay in the loop and get updates, follow us on [X](https://x.com/nestframework) and [LinkedIn](https://linkedin.com/company/nestjs).
-- Looking for a job, or have a job to offer? Check out our official [Jobs board](https://jobs.nestjs.com).
+macOS or Linux:
 
-## Support
+```bash
+cp .env.example .env
+```
 
-Nest is an MIT-licensed open source project. It can grow thanks to the sponsors and support by the amazing backers. If you'd like to join them, please [read more here](https://docs.nestjs.com/support).
+Update the values inside `.env` before running the project.
 
-## Stay in touch
+## Environment Variables
 
-- Author - [Kamil Myśliwiec](https://twitter.com/kammysliwiec)
-- Website - [https://nestjs.com](https://nestjs.com/)
-- Twitter - [@nestframework](https://twitter.com/nestframework)
+```env
+NODE_ENV=development
+PORT=3000
 
-## License
+DATABASE_HOST=localhost
+DATABASE_PORT=5432
+DATABASE_NAME=en2h_booking
+DATABASE_USERNAME=postgres
+DATABASE_PASSWORD=your_database_password
 
-Nest is [MIT licensed](https://github.com/nestjs/nest/blob/master/LICENSE).
+JWT_ACCESS_SECRET=your_access_token_secret
+JWT_ACCESS_EXPIRES_IN=15m
+
+JWT_REFRESH_SECRET=your_refresh_token_secret
+JWT_REFRESH_EXPIRES_IN=7d
+```
+
+Do not commit the real `.env` file.
+
+## Database Setup
+
+Start PostgreSQL using Docker:
+
+```bash
+docker compose up -d db
+```
+
+Check the container status:
+
+```bash
+docker compose ps
+```
+
+The project uses PostgreSQL with TypeORM migrations. Database synchronization is disabled.
+
+## Running Migrations
+
+Run pending migrations:
+
+```bash
+npm run migration:run
+```
+
+View migration status:
+
+```bash
+npm run migration:show
+```
+
+Revert the latest migration:
+
+```bash
+npm run migration:revert
+```
+
+The current migration is:
+
+```text
+InitialSchema1783678267184
+```
+
+## Running the Application
+
+Start PostgreSQL:
+
+```bash
+docker compose up -d db
+```
+
+Run migrations:
+
+```bash
+npm run migration:run
+```
+
+Start the application in development mode:
+
+```bash
+npm run start:dev
+```
+
+API base URL:
+
+```text
+http://localhost:3000/api
+```
+
+Swagger documentation:
+
+```text
+http://localhost:3000/api/docs
+```
+
+Build the project:
+
+```bash
+npm run build
+```
+
+Run the production build:
+
+```bash
+npm run start:prod
+```
+
+## Docker Instructions
+
+Build and start the API and PostgreSQL together:
+
+```bash
+docker compose up --build -d
+```
+
+Check the containers:
+
+```bash
+docker compose ps
+```
+
+View API logs:
+
+```bash
+docker compose logs -f api
+```
+
+The API container waits for PostgreSQL, runs pending migrations, and then starts the application.
+
+Stop the containers without deleting database data:
+
+```bash
+docker compose down
+```
+
+Do not use `docker compose down -v` unless you intentionally want to delete the database volume.
+
+## Running Unit Tests
+
+Run all unit tests:
+
+```bash
+npm test -- --runInBand
+```
+
+Run the linter:
+
+```bash
+npm run lint
+```
+
+Build the project:
+
+```bash
+npm run build
+```
+
+## API Documentation
+
+Swagger is used for API documentation.
+
+Open:
+
+```text
+http://localhost:3000/api/docs
+```
+
+For protected endpoints:
+
+1. Register or log in.
+2. Copy the returned access token.
+3. Click **Authorize** in Swagger.
+4. Enter the access token.
+
+## Main Endpoints
+
+### Authentication
+
+| Method | Endpoint             | Access |
+| ------ | -------------------- | ------ |
+| POST   | `/api/auth/register` | Public |
+| POST   | `/api/auth/login`    | Public |
+| POST   | `/api/auth/refresh`  | Public |
+
+### Services
+
+| Method | Endpoint            | Access    |
+| ------ | ------------------- | --------- |
+| POST   | `/api/services`     | Protected |
+| GET    | `/api/services`     | Protected |
+| GET    | `/api/services/:id` | Protected |
+| PATCH  | `/api/services/:id` | Protected |
+| DELETE | `/api/services/:id` | Protected |
+
+### Bookings
+
+| Method | Endpoint                   | Access    |
+| ------ | -------------------------- | --------- |
+| POST   | `/api/bookings`            | Public    |
+| GET    | `/api/bookings`            | Protected |
+| GET    | `/api/bookings/:id`        | Protected |
+| PATCH  | `/api/bookings/:id/status` | Protected |
+| PATCH  | `/api/bookings/:id/cancel` | Protected |
+
+Booking listing supports pagination, search, and status filtering:
+
+```http
+GET /api/bookings?page=1&limit=10
+```
+
+```http
+GET /api/bookings?search=kamal
+```
+
+```http
+GET /api/bookings?status=PENDING
+```
+
+## Project Structure
+
+```text
+src/
+├── auth/
+├── bookings/
+├── common/
+├── database/
+├── services/
+├── users/
+├── app.module.ts
+└── main.ts
+```
+
+## Assumptions Made
+
+- Registration uses email and password.
+- All service endpoints require authentication.
+- Booking creation is public.
+- Other booking endpoints require authentication.
+- Service duration is stored in minutes.
+- New bookings start with `PENDING`.
+- Swagger is used instead of a Postman collection.
+
+## Future Improvements
+
+Possible future improvements include role-based access control, customer accounts, notifications, booking rescheduling, end-to-end tests, and cloud deployment.
