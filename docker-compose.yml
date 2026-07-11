@@ -1,4 +1,39 @@
 services:
+  api:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: en2h-booking-api
+    restart: unless-stopped
+
+    environment:
+      NODE_ENV: production
+      PORT: 3000
+
+      DATABASE_HOST: db
+      DATABASE_PORT: 5432
+      DATABASE_NAME: ${DATABASE_NAME}
+      DATABASE_USERNAME: ${DATABASE_USERNAME}
+      DATABASE_PASSWORD: ${DATABASE_PASSWORD}
+
+      JWT_ACCESS_SECRET: ${JWT_ACCESS_SECRET}
+      JWT_ACCESS_EXPIRES_IN: ${JWT_ACCESS_EXPIRES_IN}
+
+      JWT_REFRESH_SECRET: ${JWT_REFRESH_SECRET}
+      JWT_REFRESH_EXPIRES_IN: ${JWT_REFRESH_EXPIRES_IN}
+
+    ports:
+      - '${PORT:-3000}:3000'
+
+    depends_on:
+      db:
+        condition: service_healthy
+
+    command: >
+      sh -c "node node_modules/typeorm/cli.js migration:run
+      -d dist/database/data-source.js &&
+      npm run start:prod"
+
   db:
     image: postgres:18.4-bookworm
     container_name: en2h-booking-db
